@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intermediate Tasks</title>
+</head>
+<body>
+    <header>
+        <h1>Form with Validation</h1>
+    </header>
+    <main>
+        <form id="userForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <button type="submit">Submit</button>
+        </form>
+        <p id="error-message" style="color: red;"></p>
+    </main>
+    <script>
+    document.getElementById("userForm").addEventListener("submit", function(event) {
+    const username = document.getElementById("username").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const errorMessage = document.getElementById("error-message");
+
+    errorMessage.textContent = "";
+
+    if (username.length < 3) {
+        event.preventDefault();
+        errorMessage.textContent = "Username must be at least 3 characters.";
+    } else if (!email.includes("@")) {
+        event.preventDefault();
+        errorMessage.textContent = "Please enter a valid email address.";
+    } else if (password.length < 6) {
+        event.preventDefault();
+        errorMessage.textContent = "Password must be at least 6 characters.";
+    }
+});
+
+    </script>
+</body>
+</html>
